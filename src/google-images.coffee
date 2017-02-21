@@ -24,6 +24,10 @@ module.exports = (robot) ->
     imageMe msg, msg.match[2], true, (url) ->
       msg.send url
 
+  robot.respond /(whisper)( me)? (.*)/i, (msg) ->
+    imageMe msg, msg.match[3] + ' site:whisper.sh', (url) ->
+      msg.send url
+
   # pro feature, not added to docs since you can't conditionally document commands
   if process.env.HUBOT_GOOGLE_IMAGES_HEAR?
     robot.hear /^(image|img) me (.+)/i, (msg) ->
